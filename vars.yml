@@ -1,0 +1,12 @@
+---
+project_name: production
+project_root: /var/projects/production
+project_repo: git@github.com:GauriGNaik/production.git
+ver: 1.0.0
+system_packages:
+  - build-essential
+  - nodejs
+  - npm
+  - git
+  - redis-server
+  - redis-tools
