@@ -27,7 +27,7 @@ var transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
         user: process.env.USERNAME,
-        pass: process.env.PASSWORD
+        pass: process.env.PASS
     }
 });
 function sendAlert(flag) {
@@ -38,8 +38,8 @@ function sendAlert(flag) {
    message = "Cpu is overloaded"
 
    var mailOptions = {
-       from: process.env.User, 
-       to: process.env.User, 
+       from: process.env.USERNAME, 
+       to: process.env.USERNAME, 
        subject: 'Hello ✔', 
        text: message,
        html: '<b>Hello world ✔</b>' 

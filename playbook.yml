@@ -20,4 +20,4 @@
 
       environment:
       USERNAME: "{{ lookup('env','USERNAME') }}"
-      PASSWORD: "{{ lookup('env','PASSWORD') }}"      
+      PASS: "{{ lookup('env','PASS') }}"      
