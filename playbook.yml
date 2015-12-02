@@ -19,5 +19,5 @@
       npm: name=forever global=yes state=latest
 
       environment:
-      USR: "{{ lookup('env','USR') }}"
-      PASS: "{{ lookup('env','PASS') }}"      
+      GMAIL_USER: "{{ lookup('env','GMAIL_USER') }}"
+      GMAIL_PASS: "{{ lookup('env','GMAIL_PASS') }}"      
