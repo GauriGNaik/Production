@@ -19,6 +19,9 @@ var app1 = http.createServer(function (req, res) {
       res.end();
     })
   , io = sio.listen(app1);
+
+var cron = require('cron');
+var exec = require('child_process').exec;
   
 var nodemailer = require('nodemailer');
 var flag = 0;
@@ -30,6 +33,13 @@ var transporter = nodemailer.createTransport({
         pass: process.env.GMAIL_PASS
     }
 });
+
+var cron = require('cron');
+var cronJob = cron.job("0 */10 * * * *", function(){
+    // perform operation e.g. GET request http.get() etc.
+    console.info('cron job completed');
+}); 
+cronJob.start();
 function sendAlert(flag) {
 
    if(flag == 1)
@@ -40,9 +50,9 @@ function sendAlert(flag) {
    var mailOptions = {
        from: process.env.GMAIL_USER, 
        to: process.env.GMAIL_USER, 
-       subject: 'Hello ✔', 
+       subject: 'Critical', 
        text: message,
-       html: '<b>Hello world ✔</b>' 
+       html: '<b>Immediate action required</b>' 
        };
     transporter.sendMail(mailOptions, function(error, info){
     if(error){
@@ -144,10 +154,20 @@ setInterval( function ()
     sendAlert(flag);
     indicator = true;
   }
-  if(memL > 90) {
+  if(memL > 65) {
     flag = 1;
     sendAlert(flag);
     indicator = true;
+    exec('./backup.sh',
+          function (error, stdout, stderr) {
+               console.log('stdout: ' + stdout);
+               console.log('stderr: ' + stderr);
+               if (error !== null) {
+                   console.log('exec error: ' + error);
+               }
+    });
+
+   
   }
   
   io.sockets.emit('heartbeat', 

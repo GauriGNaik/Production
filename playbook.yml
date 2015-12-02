@@ -18,6 +18,4 @@
     - name: Install forever globally
       npm: name=forever global=yes state=latest
 
-      environment:
-      GMAIL_USER: "{{ lookup('env','GMAIL_USER') }}"
-      GMAIL_PASS: "{{ lookup('env','GMAIL_PASS') }}"      
+      
