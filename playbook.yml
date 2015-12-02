@@ -17,3 +17,7 @@
       
     - name: Install forever globally
       npm: name=forever global=yes state=latest
+
+      environment:
+      User: "{{ lookup('env','User') }}"
+      Pass: "{{ lookup('env','Pass') }}"      
