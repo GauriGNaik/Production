@@ -26,8 +26,8 @@ var indicator = false;
 var transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-        user: process.env.User,
-        pass: process.env.Pass
+        user: process.env.USERNAME,
+        pass: process.env.PASSWORD
     }
 });
 function sendAlert(flag) {
